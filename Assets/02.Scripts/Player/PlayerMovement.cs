@@ -1,30 +1,24 @@
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour, IModule, IAfterInitModule
+public class PlayerMovement : GroundAgentMovement
 {
     [SerializeField] private float moveSpeed;
-
-    private GroundChecker _groundChecker;
-    private Rigidbody2D _rbCompo;
-    private ModuleOwner _owner;
-    private Player _player;
-    
-    public void Initialize(ModuleOwner owner)
+    [SerializeField] private float jumpPower;
+    protected Player _player;
+    public override void AfterInit()
     {
-        _owner = owner;
-        _rbCompo = owner.GetComponent<Rigidbody2D>();
-        _player = owner.GetComponent<Player>();
-    }
-    public void AfterInit()
-    {
-        _player.PlayerInput.OnMoveKeyPressed += HandleMovement;
+        base.AfterInit();
+        _player = _owner.GetComponent<Player>();
+        _player.PlayerInput.OnMoveKeyPressed += HandleMovementKey;
+        _player.PlayerInput.OnJumpKeyPressed += HandleJumpKey;
+        _movementSpeed = moveSpeed;
+        JumpPower = jumpPower;
     }
     private void OnDestroy()
     {
-        _player.PlayerInput.OnMoveKeyPressed -= HandleMovement;
+        _player.PlayerInput.OnMoveKeyPressed -= HandleMovementKey;
+        _player.PlayerInput.OnJumpKeyPressed -= HandleJumpKey;
     }
-    private void HandleMovement(float movement)
-    {
-        _rbCompo.linearVelocityX = movement * moveSpeed;
-    }
+    protected void HandleMovementKey(float movementX) => _moveX = movementX;
+    protected void HandleJumpKey() => Jump();
 }

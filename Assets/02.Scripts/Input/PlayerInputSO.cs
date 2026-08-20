@@ -43,7 +43,6 @@ public class PlayerInputSO : ScriptableObject, Controls.IPlayerActions
     public void OnLook(InputAction.CallbackContext context)
     {
         _mouseScreenPosition = context.ReadValue<Vector2>();
-        Debug.Log(_mouseScreenPosition);
     }
 
     public void OnMove(InputAction.CallbackContext context)
