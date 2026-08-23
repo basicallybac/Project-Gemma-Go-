@@ -42,7 +42,6 @@ public class GroundAgentMovement : AgentMovement, IJumpableAgent, IGroundAgent
     {
         if (GroundChecker.IsGround && CanJump)
         {
-            Debug.Log("JUMP");
             ResetGravity();
             _rbCompo.AddForceY(JumpPower, ForceMode2D.Impulse);
             CanJump = false;

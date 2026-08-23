@@ -1,9 +1,11 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMovement : GroundAgentMovement
 {
     [SerializeField] private float moveSpeed;
     [SerializeField] private float jumpPower;
+
     protected Player _player;
     public override void AfterInit()
     {
@@ -11,7 +13,7 @@ public class PlayerMovement : GroundAgentMovement
         _player = _owner.GetComponent<Player>();
         _player.PlayerInput.OnMoveKeyPressed += HandleMovementKey;
         _player.PlayerInput.OnJumpKeyPressed += HandleJumpKey;
-        _movementSpeed = moveSpeed;
+        _walkSpeed = moveSpeed;
         JumpPower = jumpPower;
     }
     private void OnDestroy()

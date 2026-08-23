@@ -8,6 +8,7 @@ public class PlayerInputSO : ScriptableObject, Controls.IPlayerActions
     public event Action<float> OnMoveKeyPressed;
     public event Action OnAttackKeyPressed;
     public event Action OnJumpKeyPressed;
+    public event Action OnDashKeyPressed;
 
     private Controls _controls;
     private Vector2 _mouseScreenPosition;
@@ -49,5 +50,11 @@ public class PlayerInputSO : ScriptableObject, Controls.IPlayerActions
     {
         float moveDir = context.ReadValue<Vector2>().x;
         OnMoveKeyPressed?.Invoke(moveDir);
+    }
+
+    public void OnDash(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+            OnDashKeyPressed?.Invoke();
     }
 }
