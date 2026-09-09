@@ -1,21 +1,16 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Agent : ModuleOwner, IDamagable
+public class Agent : ModuleOwner
 {
-    public bool IsDead { get; set; }
-    public UnityEvent OnHit;
-    public UnityEvent OnDeath;
     public Rigidbody2D RbCompo { get; private set; }
-    public HealthModule Health { get; private set; }
+    public AgentHealthModule HealthModule { get; private set; }
+    public ResistanceModule ResistanceModule { get; private set; }
     protected override void InitializeModules()
     {
         base.InitializeModules();
         RbCompo = GetComponent<Rigidbody2D>();
-        Health = GetModule<HealthModule>();
-    }
-    public void ApplyDamage(DamageData damageData)
-    {
-
+        HealthModule = GetModule<AgentHealthModule>();
+        ResistanceModule = GetModule<ResistanceModule>();
     }
 }
