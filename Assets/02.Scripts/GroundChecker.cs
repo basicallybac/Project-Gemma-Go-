@@ -14,7 +14,6 @@ public class GroundChecker : MonoBehaviour
     {
         IsGround = Physics2D.OverlapBox(transform.position, groundCheckerSize, 0, WhatIsGround);
     }
-
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;

@@ -1,26 +1,21 @@
 using System.Collections;
 using UnityEngine;
 
-public class DashModule : MonoBehaviour, IModule, IAfterInitModule
+public class DashModule : MonoBehaviour, IModule
 {
-    //protected GroundAgentMovement _movement;
-    protected ModuleOwner _owner;
-    protected float _dashPower = 20;
+    private AbstractMovementModule _movement;
+    private ModuleOwner _owner;
+    [SerializeField] private float _dashPower;
     public void Initialize(ModuleOwner owner)
     {
         _owner = owner;
-        //_movement = owner.GetComponentInChildren<GroundAgentMovement>();
+        _movement = owner.GetModule<AbstractMovementModule>();
     }
     public void Dash()
     {
-        //_movement.ToggleMove(false);
-        //_movement.ResetGravity();
-        //_movement.RbCompo.AddForceX(_dashPower * _owner.transform.right.x, ForceMode2D.Impulse);
+        _movement.ToggleMove(false);
+        _movement.RbCompo.AddForceX(_dashPower * _owner.transform.right.x, ForceMode2D.Impulse);
         StartCoroutine(DashActiveCoroutine());
-    }
-    public virtual void AfterInit()
-    {
-
     }
     protected virtual void OnDestroy()
     {
@@ -29,6 +24,6 @@ public class DashModule : MonoBehaviour, IModule, IAfterInitModule
     private IEnumerator DashActiveCoroutine()
     {
         yield return new WaitForSeconds(0.15f);
-        //_movement.ToggleMove(true);
+        _movement.ToggleMove(true);
     }
 }

@@ -9185,10 +9185,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1776646665}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2afeade832232b345a4663ab38fa2415, type: 3}
+  m_Script: {fileID: 11500000, guid: 4457f4248f2e5024c96aa8f2c8ad3640, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerDashModule
-  dashPower: 25
+  m_EditorClassIdentifier: Assembly-CSharp::DashModule
+  _dashPower: 20
 --- !u!1 &1814578026
 GameObject:
   m_ObjectHideFlags: 0

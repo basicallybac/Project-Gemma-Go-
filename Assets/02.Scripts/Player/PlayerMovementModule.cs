@@ -17,12 +17,15 @@ public class PlayerMovementModule : AbstractMovementModule, IAfterInitModule
     {
         _player.PlayerInput.OnMoveKeyPressed += HandleMoveKey;
         _player.PlayerInput.OnJumpKeyPressed += HandleJumpKey;
+        _player.PlayerInput.OnDashKeyPressed += HandleDashKey;
     }
     private void OnDestroy()
     {
         _player.PlayerInput.OnMoveKeyPressed -= HandleMoveKey;
         _player.PlayerInput.OnJumpKeyPressed -= HandleJumpKey;
+        _player.PlayerInput.OnDashKeyPressed -= HandleDashKey;
     }
     private void HandleMoveKey(float x) => SetMoveDir(x);
     private void HandleJumpKey() => _jumpModule.Jump();
+    private void HandleDashKey() => _dashModule.Dash();
 }
