@@ -15,6 +15,10 @@ public class DashModule : MonoBehaviour, IModule
     {
         _movement.ToggleMove(false);
         _movement.RbCompo.AddForceX(_dashPower * _owner.transform.right.x, ForceMode2D.Impulse);
+        if(_movement.TryGetComponent<IGroundAgent>(out IGroundAgent agent))
+        {
+            agent.ResetGravity();
+        }
         StartCoroutine(DashActiveCoroutine());
     }
     protected virtual void OnDestroy()

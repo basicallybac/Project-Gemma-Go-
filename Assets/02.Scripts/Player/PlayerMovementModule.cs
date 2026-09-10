@@ -1,11 +1,10 @@
 using UnityEngine;
 
-public class PlayerMovementModule : AbstractMovementModule, IAfterInitModule
+public class PlayerMovementModule : GroundAgentMovementModule, IAfterInitModule
 {
     private Player _player;
     private JumpModule _jumpModule;
     private DashModule _dashModule;
-
     public override void Initialize(ModuleOwner owner)
     {
         base.Initialize(owner);
